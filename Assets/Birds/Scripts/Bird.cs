@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System.Threading.Tasks;
 
 namespace AR.Birds
 {
@@ -28,22 +29,28 @@ namespace AR.Birds
         {
             _animator = GetComponent<Animator>();
             _sourceAudio = GetComponent<AudioSource>();
+
+            transform.SetParent(null);
         }
-        public void EatAnimation()
+        public async void EatAnimation()
         {
             _particlesFeed.gameObject.SetActive(true);
             _particlesFeed.Play();
             _animator.SetTrigger(_animationEatHash);
+            await Task.Delay(2000);
+            _particlesFeed.gameObject.SetActive(false);
+            _particlesFeed.Stop();
+
         }
 
-        public void MoveToPosition(Transform targetPosition)
+        public void MoveToPosition(float posY = 0)
         {
+            Vector3 posMove = posY != 0 ? new Vector3(transform.position.x, posY, transform.position.z) : transformPosUp.position;
+
             _sourceAudio.PlayOneShot(_clipFly);
-
             _animator.SetBool(_animationFlyHash, true);
-
             float duration = 2;
-            transform.DOMove(transformPosUp.position, duration).OnComplete(()=> _animator.SetBool(_animationFlyHash, false));
+            transform.DOMove(posMove, duration).OnComplete(()=> _animator.SetBool(_animationFlyHash, false));
         }
 
         public void Sing()
