@@ -1,32 +1,42 @@
-using AR.Birds;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class InputController : MonoBehaviour
+namespace AR.Birds
 {
-    [SerializeField] private CanvasDebuger _canvasDebuger;
-    [SerializeField] private Bird _bird;
-    void Update()
+    public class InputController : MonoBehaviour
     {
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        [SerializeField] private CanvasDebuger _canvasDebuger;
+        private Bird _bird;
+
+        void Update()
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-            if (Physics.Raycast(ray, out RaycastHit hit))
-            {
-                if (hit.collider != null && hit.collider.gameObject.GetComponent<Bird>())
-                {
-                    GameObject touchedObject = hit.transform.gameObject;
-                    _canvasDebuger.SetTextDebug("toch at " + touchedObject.name);
-                    touchedObject.GetComponent<Bird>().EatAnimation();
-                }
+            if (_bird == null)
                 return;
+
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+                if (Physics.Raycast(ray, out RaycastHit hit))
+                {
+                    if (hit.collider != null)
+                    {
+                        GameObject touchedObject = hit.transform.gameObject;
+                        _canvasDebuger.SetTextDebug("toch at " + touchedObject.name);
+                        if (touchedObject.GetComponent<Bird>())
+                        {
+                            touchedObject.GetComponent<Bird>().EatAnimation();
+                        }
+                        else if (touchedObject.GetComponent<AreaTap>())
+                        {
+                            _bird.MoveToPosition(touchedObject.GetComponent<AreaTap>());
+                        }
+                    }
+                }
             }
+        }
 
-            Vector3 tapPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            _canvasDebuger.SetTextDebug("pos Y: " + tapPosition.y);
-
-            _bird.MoveToPosition(tapPosition.y);
+        public void SetBird(Bird bird)
+        {
+            _bird = bird;
         }
     }
 }

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0fa0374ceb6f764daf364601a2750c3, type: 3}
+  m_Name: DataBirds
+  m_EditorClassIdentifier: 
+  _listBirds:
+  - typeBird: 0
+    sprite: {fileID: 21300000, guid: 1ae17178138963443a6c6cc696f69ec8, type: 3}
+    scoreToOpen: 0
+  - typeBird: 1
+    sprite: {fileID: 21300000, guid: 246bda4b237a7ae43ba179d8ca4b4c0e, type: 3}
+    scoreToOpen: 10
+  - typeBird: 2
+    sprite: {fileID: 21300000, guid: 13ab72e6078870b47ac393b752911ff8, type: 3}
+    scoreToOpen: 20
+  - typeBird: 3
+    sprite: {fileID: 21300000, guid: 90d934a047e252844a8055d79541c6eb, type: 3}
+    scoreToOpen: 50
+  - typeBird: 4
+    sprite: {fileID: 21300000, guid: 666e26b4e9cb1774aa4be2a485c7b6e3, type: 3}
+    scoreToOpen: 70

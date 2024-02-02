@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenuBirds.unity
+    guid: 0efeaa73b3872394d8e28ef765759121
+  - enabled: 1
     path: Assets/Scenes/Birds.unity
     guid: 3708e21713a250e41ab1b155848f7b49
   m_configObjects:
