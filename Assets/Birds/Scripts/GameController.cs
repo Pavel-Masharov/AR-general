@@ -82,11 +82,11 @@ namespace AR.Birds
             {
                 int quantityScore = 10;
                 AddScore(quantityScore);
-                result = "ВЕРНО! + "  + quantityScore + " очков";
+                result = "верно! + "  + quantityScore + " очков";
             }
             else
             {
-                result = "НЕВЕРНО";
+                result = "wrong";
             }
             int delay = 2000;
             _canvasUI.ShowResultMessage(result, delay);
