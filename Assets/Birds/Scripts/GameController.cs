@@ -82,7 +82,7 @@ namespace AR.Birds
             {
                 int quantityScore = 10;
                 AddScore(quantityScore);
-                result = "верно! + "  + quantityScore + " очков";
+                result = "Great! + " + quantityScore + " score";
             }
             else
             {

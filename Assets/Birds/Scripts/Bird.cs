@@ -12,7 +12,7 @@ namespace AR.Birds
         [SerializeField] private AudioClip _clipFly;
 
         private Animator _animator;
-        private AudioSource _sourceAudio;
+       // private AudioSource _sourceAudio;
         private StateBird _stateBird = StateBird.Sit;
         private WaitForSeconds _timeChangeAnim = new WaitForSeconds(4);
         private Coroutine _coroutineRunAnimation;
@@ -34,7 +34,6 @@ namespace AR.Birds
         private void Start()
         {
             _animator = GetComponent<Animator>();
-            _sourceAudio = GetComponent<AudioSource>();
             _coroutineRunAnimation = StartCoroutine(RunAnimation());
         }
 
@@ -75,7 +74,7 @@ namespace AR.Birds
             _currentArea = areaTap;
             _stateBird = StateBird.Move;
             float duration = 2;
-            _sourceAudio.PlayOneShot(_clipFly);
+            GameAudioController.instance.PlayOneShotSound(_clipFly);
             _animator.SetBool(_animationFlyHash, true); 
             if (areaTap.GetTypeArea() == TypeArea.Sit)            
                 transform.DOMove(areaTap.GetTargetPosition(), duration).SetEase(Ease.OutSine).OnComplete(() =>
@@ -94,8 +93,8 @@ namespace AR.Birds
     
         public void Sing()
         {
-            _sourceAudio.PlayOneShot(_clipSing);
-            if(_stateBird == StateBird.Sit)
+            GameAudioController.instance.PlayOneShotSound(_clipSing);
+            if (_stateBird == StateBird.Sit)
                 _animator.SetTrigger(_animationSingHash);
         }
 
