@@ -15,10 +15,14 @@ namespace AR.Birds
         [SerializeField] private ButtonAnswaer _firstButtonallAnswaer, _secondButtonAnswaer, _thirdButtonAnswaer;
         [SerializeField] private GameObject _parentAnswer;
         [SerializeField] private Button _buttonBack;
+        [SerializeField] private Button _buttonSing;
+
+        private UnityAction _actionSing;
 
         public void Start()
         {
             _buttonBack.onClick.AddListener(OnClickButtonBack);
+            _buttonSing.onClick.AddListener(OnClickButtonSing);
         }
 
         public void ShowExample(string example, List<int> asks, UnityAction<int> actionAnswer)
@@ -45,6 +49,16 @@ namespace AR.Birds
         private void OnClickButtonBack()
         {
             SceneManager.LoadScene("MainMenuBirds");
+        }
+
+        private void OnClickButtonSing()
+        {
+            _actionSing?.Invoke();
+        }
+
+        public void SetActionSing(UnityAction actionSing)
+        {
+            _actionSing = actionSing;
         }
     }
 }

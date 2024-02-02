@@ -21,10 +21,13 @@ namespace AR.Birds
         {
             string path = "Birds/" + DataGameBird.NameCurentBird;
             var prefab = Resources.Load(path) as GameObject;
-            var bird = Instantiate(prefab, transform);
-            bird.transform.position = _startPosition.position;
-            bird.GetComponent<Bird>().InitializeBird(_particlesFeed);
-            _inputController.SetBird(bird.GetComponent<Bird>());
+            var birdObject = Instantiate(prefab, transform);
+            birdObject.transform.position = _startPosition.position;
+            Bird bird = birdObject.GetComponent<Bird>();
+            bird.InitializeBird(_particlesFeed);
+            _inputController.SetBird(bird);
+            _canvasUI.SetActionSing(bird.Sing);
+
         }
 
         private void Start()
@@ -89,7 +92,7 @@ namespace AR.Birds
             _canvasUI.ShowResultMessage(result, delay);
             await Task.Delay(delay);
 
-            _hasAsk = true;
+            _hasAsk = false;
         }
 
         private void AddScore(int score)
