@@ -690,7 +690,7 @@ MonoBehaviour:
   _thirdButtonAnswaer: {fileID: 2346397849744380291}
   _parentAnswer: {fileID: 1498713826914405979}
   _buttonBack: {fileID: 3075723696557337614}
-  _buttonSing: {fileID: 0}
+  _buttonSing: {fileID: 6799187618707046546}
 --- !u!1 &2024864990111196722
 GameObject:
   m_ObjectHideFlags: 0
