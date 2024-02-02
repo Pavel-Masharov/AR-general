@@ -12,7 +12,6 @@ namespace AR.Birds
         [SerializeField] private AudioClip _clipFly;
 
         private Animator _animator;
-       // private AudioSource _sourceAudio;
         private StateBird _stateBird = StateBird.Sit;
         private WaitForSeconds _timeChangeAnim = new WaitForSeconds(4);
         private Coroutine _coroutineRunAnimation;
@@ -59,6 +58,7 @@ namespace AR.Birds
                 return;
 
             _particlesFeed.gameObject.SetActive(true);
+            _particlesFeed.gameObject.transform.position = transform.position;
             _particlesFeed.Play();
             _animator.SetTrigger(_animationEatHash);
             await Task.Delay(2000);
