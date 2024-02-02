@@ -17,7 +17,7 @@ namespace AR.Birds
         [SerializeField] private Button _buttonBack;
         [SerializeField] private Button _buttonSing;
 
-        private Bird _bird;
+        private UnityAction _actionSing;
 
         public void Start()
         {
@@ -39,11 +39,11 @@ namespace AR.Birds
 
         public async void ShowResultMessage(string textResult, int delay)
         {
+            _parentAnswer.SetActive(false);
             _textExample.text = textResult;
             await Task.Delay(delay);
 
             _cloud.SetActive(false);
-            _parentAnswer.SetActive(false);
         }
 
         private void OnClickButtonBack()
@@ -53,12 +53,12 @@ namespace AR.Birds
 
         private void OnClickButtonSing()
         {
-            _bird.Sing();
+            _actionSing?.Invoke();
         }
 
-        public void SetBird(Bird bird)
+        public void SetActionSing(UnityAction actionSing)
         {
-            _bird = bird;
+            _actionSing = actionSing;
         }
     }
 }

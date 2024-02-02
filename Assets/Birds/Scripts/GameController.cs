@@ -26,7 +26,7 @@ namespace AR.Birds
             Bird bird = birdObject.GetComponent<Bird>();
             bird.InitializeBird(_particlesFeed);
             _inputController.SetBird(bird);
-            _canvasUI.SetBird(bird);
+            _canvasUI.SetActionSing(bird.Sing);
 
         }
 
