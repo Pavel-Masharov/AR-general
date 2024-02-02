@@ -59,6 +59,7 @@ namespace AR.Birds
         public void SetActionSing(UnityAction actionSing)
         {
             _actionSing = actionSing;
+            _buttonSing.onClick.AddListener(OnClickButtonSing);
         }
     }
 }
