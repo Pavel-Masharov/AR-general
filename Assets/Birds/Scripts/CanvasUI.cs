@@ -11,13 +11,13 @@ namespace AR.Birds
     public class CanvasUI : MonoBehaviour
     {
         [SerializeField] private GameObject _cloud;
-        [SerializeField] private TextMeshProUGUI _textExample;
+        [SerializeField] private Text _textExample;
         [SerializeField] private ButtonAnswaer _firstButtonallAnswaer, _secondButtonAnswaer, _thirdButtonAnswaer;
         [SerializeField] private GameObject _parentAnswer;
         [SerializeField] private Button _buttonBack;
         [SerializeField] private Button _buttonSing;
 
-        private UnityAction _actionSing;
+        private Bird _bird;
 
         public void Start()
         {
@@ -53,13 +53,12 @@ namespace AR.Birds
 
         private void OnClickButtonSing()
         {
-            _actionSing?.Invoke();
+            _bird.Sing();
         }
 
-        public void SetActionSing(UnityAction actionSing)
+        public void SetBird(Bird bird)
         {
-            _actionSing = actionSing;
-            _buttonSing.onClick.AddListener(OnClickButtonSing);
+            _bird = bird;
         }
     }
 }

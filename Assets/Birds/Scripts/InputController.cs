@@ -4,7 +4,6 @@ namespace AR.Birds
 {
     public class InputController : MonoBehaviour
     {
-        [SerializeField] private CanvasDebuger _canvasDebuger;
         private Bird _bird;
 
         void Update()
@@ -20,15 +19,10 @@ namespace AR.Birds
                     if (hit.collider != null)
                     {
                         GameObject touchedObject = hit.transform.gameObject;
-                        _canvasDebuger.SetTextDebug("toch at " + touchedObject.name);
-                        if (touchedObject.GetComponent<Bird>())
-                        {
-                            touchedObject.GetComponent<Bird>().EatAnimation();
-                        }
-                        else if (touchedObject.GetComponent<AreaTap>())
-                        {
-                            _bird.MoveToPosition(touchedObject.GetComponent<AreaTap>());
-                        }
+                        if (touchedObject.GetComponent<Bird>())                       
+                            touchedObject.GetComponent<Bird>().EatAnimation();                     
+                        else if (touchedObject.GetComponent<AreaTap>())                       
+                            _bird.MoveToPosition(touchedObject.GetComponent<AreaTap>());            
                     }
                 }
             }
